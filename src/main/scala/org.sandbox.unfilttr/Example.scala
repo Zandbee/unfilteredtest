@@ -1,12 +1,11 @@
-package com.example
+package org.sandbox.unfilttr
 
+import unfiltered.directives.Directives._
+import unfiltered.directives._
 import unfiltered.request._
 import unfiltered.response._
 
-import unfiltered.directives._, Directives._
-
-//** unfiltered plan */
-class App extends unfiltered.filter.Plan {
+object App extends unfiltered.filter.Plan {
 
   def intent = Directive.Intent {
     case GET(r) =>
@@ -41,7 +40,9 @@ class App extends unfiltered.filter.Plan {
         view(params)(<p>Yup. { int } is an integer and { word } is a palindrome. </p>)
       }
   }
+
   def palindrome(s: String) = s.toLowerCase.reverse == s.toLowerCase
+
   def view(params: Map[String, Seq[String]])(body: scala.xml.NodeSeq) = {
     def p(k: String) = params.get(k).flatMap { _.headOption } getOrElse("")
     Html5(
@@ -62,16 +63,5 @@ class App extends unfiltered.filter.Plan {
      </body>
     </html>
    )
-  }
-}
-
-/** embedded server */
-object Server {
-  def main(args: Array[String]): Unit = {
-    unfiltered.jetty.Server.anylocal.context("/assets") {
-      _.resources(new java.net.URL(getClass().getResource("/www/css"), "."))
-    }.plan(new App).run({ svr =>
-      unfiltered.util.Browser.open(svr.portBindings.head.url)
-    })
   }
 }

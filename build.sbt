@@ -28,5 +28,6 @@ libraryDependencies ++= Seq(
   "ws.unfiltered" %% "unfiltered-directives" % unfilteredVersion,
   "ws.unfiltered" %% "unfiltered-filter" % unfilteredVersion,
   "ws.unfiltered" %% "unfiltered-jetty" % unfilteredVersion,
+  "com.google.code.gson" % "gson" % "2.8.2",
   "ws.unfiltered" %% "unfiltered-specs2" % unfilteredVersion % "test"
 )

@@ -2,6 +2,7 @@ package com.example
 
 import org.specs2.mutable.Specification
 import okhttp3._
+import org.sandbox.unfilttr.App
 
 object ExampleSpec extends Specification with unfiltered.specs2.jetty.Served {
 
